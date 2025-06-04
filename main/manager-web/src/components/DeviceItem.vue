@@ -33,6 +33,7 @@
         </el-tooltip>
         <span v-else>聊天记录</span>
       </div>
+      <div class="settings-btn" @click="handleVoiceprint(device.agentId)">声纹管理</div>
     </div>
     <div class="version-info">
       <div>最近对话：{{ formattedLastConnectedTime }}</div>
@@ -85,7 +86,10 @@ export default {
         return
       }
       this.$emit('chat-history', { agentId: this.device.agentId, agentName: this.device.agentName })
-    }
+    },
+    handleVoiceprint(agentId) {
+      this.$router.push({ path: '/voiceprint-management', query: { agentId } });
+    },
   }
 }
 </script>
@@ -132,12 +136,5 @@ export default {
   background: #e6e6e6;
   color: #999;
   cursor: not-allowed;
-}
-</style>
-
-<style>
-.custom-tooltip {
-  max-width: 400px;
-  word-break: break-word;
 }
 </style>

@@ -3,7 +3,7 @@ import RequestService from '../httpRequest';
 
 
 export default {
-    // 获取智能体列表
+    // 设备列表获取
     getAgentList(callback) {
         RequestService.sendRequest()
             .url(`${getServiceUrl()}/agent/list`)
@@ -34,22 +34,7 @@ export default {
                 });
             }).send();
     },
-    // 删除智能体
-    deleteAgent(agentId, callback) {
-        RequestService.sendRequest()
-            .url(`${getServiceUrl()}/agent/${agentId}`)
-            .method('DELETE')
-            .success((res) => {
-                RequestService.clearRequestTime();
-                callback(res);
-            })
-            .networkFail(() => {
-                RequestService.reAjaxFun(() => {
-                    this.deleteAgent(agentId, callback);
-                });
-            }).send();
-    },
-    // 获取智能体配置
+    // 设备配置获取
     getDeviceConfig(agentId, callback) {
         RequestService.sendRequest()
             .url(`${getServiceUrl()}/agent/${agentId}`)
@@ -62,6 +47,21 @@ export default {
                 console.error('获取配置失败:', err);
                 RequestService.reAjaxFun(() => {
                     this.getDeviceConfig(agentId, callback);
+                });
+            }).send();
+    },
+    // 设备删除
+    deleteAgent(agentId, callback) {
+        RequestService.sendRequest()
+            .url(`${getServiceUrl()}/agent/${agentId}`)
+            .method('DELETE')
+            .success((res) => {
+                RequestService.clearRequestTime();
+                callback(res);
+            })
+            .networkFail(() => {
+                RequestService.reAjaxFun(() => {
+                    this.deleteAgent(agentId, callback);
                 });
             }).send();
     },

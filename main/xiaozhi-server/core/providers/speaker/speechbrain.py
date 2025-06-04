@@ -28,6 +28,12 @@ BUFFER_SECONDS = 2
 THRESHOLD = 0.35
 ENROLL_FILE = "enrolled_voice.wav"
 
+# 极简流式声纹检测调用
+# is_owner, score = await conn.speaker.handle_audio_data(conn.asr_audio, conn.session_id)
+# if is_owner:
+#     conn.logger.bind(tag=TAG).info(f"流式识别到主人音频，score={score}")
+# else:
+#     conn.logger.bind(tag=TAG).info(f"流式未识别为主人，忽略音频，score={score}")
 
 
 class SpeechBrainProvider(SpeakerProviderBase):

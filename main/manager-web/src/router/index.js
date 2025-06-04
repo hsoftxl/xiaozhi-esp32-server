@@ -117,6 +117,13 @@ const routes = [
       return import('../views/ProviderManagement.vue')
     }
   },
+  {
+    path: '/voiceprint-management',
+    name: 'VoiceprintManagement',
+    component: function () {
+      return import('../views/VoiceprintManagement.vue')
+    }
+  },
 ]
 const router = new VueRouter({
   base: process.env.VUE_APP_PUBLIC_PATH || '/',
